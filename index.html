@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Long Have You Lived?</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        input { padding: 10px; margin: 10px; font-size: 16px; }
+        button { padding: 10px; font-size: 16px; cursor: pointer; }
+        #result { margin-top: 20px; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>Find Out How Long You Have Lived</h1>
+    <input type="date" id="birthdate">
+    <button onclick="calculateAge()">Calculate</button>
+    <div id="result"></div>
+
+    <script>
+        function calculateAge() {
+            console.log("Button clicked!");  // Проверяем, работает ли кнопка
+
+            let birthdate = document.getElementById("birthdate").value;
+            if (!birthdate) {
+                alert("Enter your birthdate!");
+                return;
+            }
+
+            let birthTime = new Date(birthdate).getTime();
+            let now = new Date().getTime();
+            let diff = now - birthTime;
+
+            let seconds = Math.floor(diff / 1000);
+            let minutes = Math.floor(seconds / 60);
+            let hours = Math.floor(minutes / 60);
+            let days = Math.floor(hours / 24);
+            let months = Math.floor(days / 30.44); // Среднее количество дней в месяце
+
+            document.getElementById("result").innerHTML = `You have lived:<br>
+    ${months} months<br>
+    ${days} days<br>
+    ${hours} hours<br>
+    ${minutes} minutes<br>
+    ${seconds} seconds`;
+        }
+    </script>
+</body>
+</html>
